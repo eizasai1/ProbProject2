@@ -20,6 +20,8 @@ probability_of_busy = 0.2
 probability_of_unavailable = 0.3
 probability_of_available = 1 - probability_of_busy - probability_of_unavailable
 
+#Expected value of exponential random variable
+expected_exponential = 12
 
 def generate_random_number():
     global use_random_number_generator
@@ -34,7 +36,7 @@ def generate_random_number():
 def calculate_exponential_rv():
     global unavailable
     probability = generate_random_number()
-    return -(math.log(1 - probability) * unavailable)
+    return -(math.log(1 - probability) * expected_exponential)
 
 
 def realization_of_w(count=0):
@@ -74,6 +76,7 @@ def main():
     file = open("Probability Project 2.txt", 'a')
     values = get_500_w_values()
     mean = get_mean(values)
+    values.sort()
     print(len(values), ((values[249] + values[250]) / 2), mean)
     for i in range(len(values)):
         file.write(str(round(values[i], 4)) + "\n")
