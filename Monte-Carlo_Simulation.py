@@ -20,8 +20,9 @@ probability_of_busy = 0.2
 probability_of_unavailable = 0.3
 probability_of_available = 1 - probability_of_busy - probability_of_unavailable
 
-#Expected value of exponential random variable
+#Expected value of Exponential random variable
 expected_exponential = 12
+
 
 def generate_random_number():
     global use_random_number_generator
@@ -34,9 +35,10 @@ def generate_random_number():
 
 
 def calculate_exponential_rv():
-    global unavailable
+    global expected_exponential
     probability = generate_random_number()
-    return -(math.log(1 - probability) * expected_exponential)
+    seconds = -(math.log(1 - probability) * expected_exponential)
+    return seconds
 
 
 def realization_of_w(count=0):
@@ -71,15 +73,28 @@ def get_mean(values):
 
 
 def main():
+    # print(get_u_values())
     file = open("Probability Project 2.txt", 'w')
     file.close()
     file = open("Probability Project 2.txt", 'a')
     values = get_500_w_values()
-    mean = get_mean(values)
     values.sort()
-    print(len(values), ((values[249] + values[250]) / 2), mean)
+    mean = get_mean(values)
+    median = ((values[len(values) // 2] + values[len(values) // 2 + 1]) / 2)
+    print(str(len(values)) + " w values", "median : " + str(median), "mean : " + str(mean))
     for i in range(len(values)):
-        file.write(str(round(values[i], 4)) + "\n")
+        file.write(str(round(values[i], 4)) + ", ")
+
+
+def get_u_values():
+    values_to_get = [51, 52, 53]
+    return_values = []
+    for i in range(values_to_get[-1]):
+        value = generate_random_number()
+        if i+1 in values_to_get:
+            return_values.append(round(value, 4))
+            print(i)
+    return return_values
 
 
 main()
