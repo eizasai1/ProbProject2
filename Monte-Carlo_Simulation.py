@@ -47,13 +47,13 @@ def realization_for_w(count=0):
         return 0
     probability = generate_random_number()
     if probability <= probability_of_busy:
-        return dial + busy + end + realization_of_w(count + 1)
+        return dial + busy + end + realization_for_w(count + 1)
     elif probability <= probability_of_busy + probability_of_unavailable:
-        return dial + unavailable + end + realization_of_w(count + 1)
+        return dial + unavailable + end + realization_for_w(count + 1)
     else:
         seconds_elapsed_for_answer = calculate_exponential_rv()
         if seconds_elapsed_for_answer >= 25:
-            return dial + unavailable + end + realization_of_w(count + 1)
+            return dial + unavailable + end + realization_for_w(count + 1)
         else:
             return dial + seconds_elapsed_for_answer
 
