@@ -61,7 +61,7 @@ def realization_for_w(count=0):
 def get_500_w_values():
     w_values_list = []
     for i in range(500):
-        w_values_list.append(realization_of_w())
+        w_values_list.append(realization_for_w())
     return w_values_list
 
 
