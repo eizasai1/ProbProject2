@@ -78,12 +78,13 @@ def main():
     file.close()
     file = open("Probability Project 2.txt", 'a')
     values = get_500_w_values()
+    for i in range(len(values)):
+        file.write(str(round(values[i], 4)) + "\n")
+    file.close()
     values.sort()
     mean = get_mean(values)
     median = ((values[len(values) // 2] + values[len(values) // 2 + 1]) / 2)
     print(str(len(values)) + " w values", "median : " + str(median), "mean : " + str(mean))
-    for i in range(len(values)):
-        file.write(str(round(values[i], 4)) + ", ")
 
 
 def get_u_values():
