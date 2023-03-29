@@ -41,7 +41,7 @@ def calculate_exponential_rv():
     return seconds
 
 
-def realization_of_w(count=0):
+def realization_for_w(count=0):
     global dial, busy, unavailable, end
     if count == 4:
         return 0
